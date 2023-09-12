@@ -10,6 +10,7 @@ public class IKSample2 : MonoBehaviour
 
     [Range(0, 1f)] public float distanceToGround;
     [SerializeField] private LayerMask nonPlayer;
+    [SerializeField] private bool useCurves;
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -28,8 +29,8 @@ public class IKSample2 : MonoBehaviour
         if (_animator)
         {
             //Left Foot
-            _animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot,1f);
-            _animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot,1f);
+            _animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot,useCurves?_animator.GetFloat("IKLeftFoot"):1);
+            _animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot,useCurves?_animator.GetFloat("IKLeftFoot"):1);
 
             RaycastHit hit;
             Ray ray = new Ray(_animator.GetIKPosition(AvatarIKGoal.LeftFoot) + Vector3.up, Vector3.down);
@@ -45,8 +46,8 @@ public class IKSample2 : MonoBehaviour
             }
             
             //Rigth Foot
-            _animator.SetIKPositionWeight(AvatarIKGoal.RightFoot,1f);
-            _animator.SetIKRotationWeight(AvatarIKGoal.RightFoot,1f);
+            _animator.SetIKPositionWeight(AvatarIKGoal.RightFoot,useCurves?_animator.GetFloat("IKRightFoot"):1);
+            _animator.SetIKRotationWeight(AvatarIKGoal.RightFoot,useCurves?_animator.GetFloat("IKRightFoot"):1);
 
            ray = new Ray(_animator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up, Vector3.down);
             if (Physics.Raycast(ray, out hit, distanceToGround + 1f,nonPlayer))
