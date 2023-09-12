@@ -999,7 +999,7 @@ MonoBehaviour:
   nonPlayer:
     serializedVersion: 2
     m_Bits: 55
-  useCurves: 0
+  useCurves: 1
 --- !u!1 &1782887988
 GameObject:
   m_ObjectHideFlags: 0
