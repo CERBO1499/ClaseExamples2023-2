@@ -46,20 +46,20 @@ public class IKSample2 : MonoBehaviour
             }
             
             //Rigth Foot
-            _animator.SetIKPositionWeight(AvatarIKGoal.RightFoot,useCurves?_animator.GetFloat("IKRightFoot"):1);
-            _animator.SetIKRotationWeight(AvatarIKGoal.RightFoot,useCurves?_animator.GetFloat("IKRightFoot"):1);
-
-           ray = new Ray(_animator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up, Vector3.down);
-            if (Physics.Raycast(ray, out hit, distanceToGround + 1f,nonPlayer))
-            {
-                if (hit.transform.tag == ("Walkable"))
-                {
-                    Vector3 footposition = hit.point;
-                    footposition.y += distanceToGround;
-                    _animator.SetIKPosition(AvatarIKGoal.RightFoot,footposition);
-                    _animator.SetIKRotation(AvatarIKGoal.RightFoot,Quaternion.LookRotation(transform.forward,hit.normal));
-                }
-            }
+             _animator.SetIKPositionWeight(AvatarIKGoal.RightFoot,useCurves?_animator.GetFloat("IKRightFoot"):1);
+             _animator.SetIKRotationWeight(AvatarIKGoal.RightFoot,useCurves?_animator.GetFloat("IKRightFoot"):1);
+           
+            ray = new Ray(_animator.GetIKPosition(AvatarIKGoal.RightFoot) + Vector3.up, Vector3.down);
+             if (Physics.Raycast(ray, out hit, distanceToGround + 1f,nonPlayer))
+             {
+                 if (hit.transform.tag == ("Walkable"))
+                 {
+                     Vector3 footposition = hit.point;
+                     footposition.y += distanceToGround;
+                     _animator.SetIKPosition(AvatarIKGoal.RightFoot,footposition);
+                     _animator.SetIKRotation(AvatarIKGoal.RightFoot,Quaternion.LookRotation(transform.forward,hit.normal));
+                 }
+             }
         }
     }
 }
